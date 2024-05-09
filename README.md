@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This project provides a Dockerized environment for the Phi3 Mini Large Language Model (LLM). The goal of this project is to demonstrate useful capabilities of this model when it comes to off-line and local LLM usage.
+This project provides a Dockerized wrapper for the Microsoft Phi3 Mini Large Language Model (LLM). The goal of this project is to demonstrate the useful capabilities of this model when it comes to local LLM usage. This project requires Docker to be installed on your computer.
 
 An example use case might be to take a text transcript from a meeting and turn this into a meeting summary.
 
@@ -41,13 +41,13 @@ This model has a context window that is limited to <XYZ> words/characters.
 The project is packaged and deployed on DockerHub allowing for easy usage from the command line. If you want to pre-fetch the Docker image, then use the following command:
 
 ```
-docker pull gencore/<project name>
+docker pull gencore/phi3-mini-query
 ```
 
 Then, to ask the model a question, simply invoke it as follows:
 
 ```
-docker run --rm -ti gencore/<project name> “Your question here”
+docker run --rm -ti gencore/phi3-mini-query “Your question here”
 ```
 
 We have then taken this concept one stage further by providing a query script that will take a text file and a query prompt and provide these to the AI model.
