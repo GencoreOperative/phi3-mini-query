@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# A script that provides a file and a query about that file to
+# the Phi3-Mini LLM. Handles argument parsing logic.
+
+PROJECT="gencore/phi3-mini-query"
+
 # Function to display usage information
 usage() {
     echo "Usage: $0 -f FILE PROMPT"
@@ -48,7 +53,6 @@ if [ -n "$file" ]; then
     file_content=$(cat "$file")
 fi
 
-IMAGE=gencore/phi3-mini-128k
 QUERY="Question: $prompt
 Source: $file_content"
-docker run --rm -ti $IMAGE:latest "$QUERY"
+docker run --rm -ti $PROJECT:latest "$QUERY"
