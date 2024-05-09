@@ -42,7 +42,8 @@ if [ $# -eq 0 ]; then
     echo "Error: No prompt provided" >&2
     usage
 fi
-prompt="$*"
+
+QUERY="Qustion: $@"
 
 # Check if file option is provided
 if [ -n "$file" ]; then
@@ -51,8 +52,7 @@ if [ -n "$file" ]; then
         exit 1
     fi
     file_content=$(cat "$file")
+    QUERY="$QUERY\nSource: $file_content"
 fi
 
-QUERY="Question: $prompt
-Source: $file_content"
 docker run --rm -ti $PROJECT:latest "$QUERY"

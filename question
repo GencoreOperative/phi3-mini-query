@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker run --rm -ti gencore/phi3-mini-query "$@"
