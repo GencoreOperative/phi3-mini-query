@@ -14,5 +14,5 @@ RUN huggingface-cli download microsoft/Phi-3-mini-128k-instruct-onnx --include c
 RUN pip install numpy
 RUN pip install --pre onnxruntime-genai
 
-COPY script.py token-count.py entrypoint.sh /
+COPY script.py token-count.py entrypoint.sh stdin.py /
 ENTRYPOINT [ "/bin/bash", "/entrypoint.sh"]
