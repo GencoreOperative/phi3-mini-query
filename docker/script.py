@@ -22,7 +22,7 @@ def main(args):
         if 'max_length' not in search_options:
             search_options['max_length'] = 2048
         
-        chat_template = '\n{input}\n'
+        chat_template = '<|user|>\n{input}<|end|><|assistant|>'
 
         prompt = f'{chat_template.format(input=input_text)}'
         input_tokens = tokenizer.encode(prompt)
@@ -33,7 +33,6 @@ def main(args):
         params.input_ids = input_tokens
         generator = og.Generator(model, params)
 
-        print("", end='', flush=True)
         while not generator.is_done():
             generator.compute_logits()
             generator.generate_next_token()
@@ -41,6 +40,7 @@ def main(args):
             print(tokenizer_stream.decode(new_token), end='', flush=True)
 
         del generator
+        print("\n", end='', flush=True)
 
     except Exception as e:
         print(f"An error occurred during generation: {e}")
