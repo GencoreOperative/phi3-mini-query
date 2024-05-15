@@ -11,8 +11,16 @@ build:
 		--tag $(project):$(git) \
 		--tag $(project):latest
 
+build-test: build
+	@echo "Building Test Image"
+	docker build test \
+		--tag $(project):test-$(git) \
+		--tag $(project):test-latest
+
 publish:
 	@echo "Pushing to DockerHub"
 	@sh utils/docker-login
 	docker push $(project):$(git)
 	docker push $(project):latest
+	docker push $(project):test-$(git)
+	docker push $(project):test-latest
