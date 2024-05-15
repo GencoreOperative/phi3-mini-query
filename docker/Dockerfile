@@ -3,6 +3,7 @@ FROM debian:latest
 RUN apt-get update \
     && apt-get install -y \
         git-lfs \
+        pip \
         python3 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -13,7 +14,5 @@ RUN huggingface-cli download microsoft/Phi-3-mini-128k-instruct-onnx --include c
 RUN pip install numpy
 RUN pip install --pre onnxruntime-genai
 
-ADD script.py /
-ADD token-count.py /
-ADD entrypoint.sh /
+COPY script.py token-count.py entrypoint.sh /
 ENTRYPOINT [ "/bin/bash", "/entrypoint.sh"]
